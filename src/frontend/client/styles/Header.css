@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&family=Sentient&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap');
+
+
+/* Navbar */
+header{
+  box-sizing: border-box;
+  background: #ffffff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  font-weight: 300px;
+  width: 90%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+}
+
+/* Logo */
+.navbar .logo img {
+  height: 40px;
+  margin-left: 20px;
+}
+
+/* Flex container for links and icons */
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  flex-grow: 1;
+  gap: 30px;
+  margin: 0;
+}
+
+.nav-links li {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.nav-links li a{
+  text-decoration: none;
+  color: black;
+}
+
+.nav-links li a:hover {
+  color: #ff7f50;
+}
+
+/* Icons for tablet and web view */
+.icons {
+  display: flex;
+  gap: 50px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 30px;
+}
+
+/* Hamburger Menu (Mobile View) */
+.menu-toggle {
+  display: none;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 600px) {
+  .menu-toggle {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .icons {
+    display: none;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 80%; /* This ensures it's below the navbar */
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000; /* Ensures it appears above other content */
+  }
+
+  .mobile-menu li {
+    padding: 15px 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .mobile-menu li a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .mobile-menu li:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-menu li:hover {
+    background-color: #f1f1f1;
+  }
+
+  .mobile-menu li a:hover {
+    color:  #ff7f50;
+  }
+}
+
+/* Tablet View */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .nav-links {
+    gap: 20px;
+  }
+
+  .icons {
+    gap: 20px;
+  }
+}
+
+header {
+  position: relative;
+}

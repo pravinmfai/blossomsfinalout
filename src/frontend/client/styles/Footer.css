@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&family=Sentient&display=swap');
+
+/* Footer Styles */
+footer {
+  background-color: #fff;
+  padding: 40px 5%;
+  font-family: 'Arial', sans-serif;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Subscription Section */
+.subscription-section {
+  background-color: #000;
+  color: #fff;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.subscription-text {
+  flex-basis: 100%;
+  font-size: 28px;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+
+.subscription-text h2 {
+  margin: 0;
+  font-family: 'Sentient', sans-serif;
+  font-size: 40px;
+  line-height: 1.2;
+  font-style: normal;
+  color: white;
+}
+
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-basis: 100%;
+}
+
+.subscribe-form input, .subscribe-form button {
+  padding: 12px;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.subscribe-form input {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.subscribe-form button {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.subscribe-form button:hover {
+  background-color: white;
+  border-color: white;
+  color: black;
+}
+
+/* Footer Info Section */
+.footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-logo {
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  height: 50px;
+}
+
+.footer-contact p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 240px;
+}
+
+.footer-social .icon-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 1px solid #000;
+}
+
+.footer-social .icon-circle:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+  margin-top: 20px;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 10px;
+}
+
+/* Media Queries for Responsiveness */
+/* Tablet View */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Align items in the same vertical line */
+    justify-content: space-between; /* Spread the content across */
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-social {
+    align-self: flex-start; /* Align social icons to the start of the container */
+    margin-top: 5px; /* Adjust the top margin to align with the first line of the address */
+  }
+
+  .footer-social .icon-circle {
+    margin-left: 10px;
+  }
+
+  .subscription-text {
+    flex-basis: 60%;
+  }
+
+  .subscribe-form {
+    flex-basis: 35%;
+  }
+}
+
+/* Desktop View */
+@media (min-width: 1024px) {
+  .subscription-section {
+    flex-wrap: nowrap;
+  }
+  .subscription-text {
+    flex-basis: 70%;
+    margin-bottom: 0;
+  }
+  .subscribe-form {
+    flex-basis: 30%;
+    padding-left: 20px;
+  }
+  .footer-social {
+    justify-content: space-between;
+    margin-top: 70px;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+  .footer-info {
+    flex-direction: column;
+  }
+  .footer-logo img {
+    height: 40px;
+  }
+  .footer-social {
+    justify-content: space-between;
+    margin-top: 20px;
+    max-width: 100%;
+  }
+  .subscription-section h2 {
+    font-size: 28px;
+    text-align: left;
+  }
+  .subscribe-form input,
+  .subscribe-form button {
+    font-size: 16px;
+    padding: 10px;
+  }
+  .footer-bottom {
+    font-size: 11px;
+  }
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-contact {
+    margin-top: 10px;
+  }
+  .footer-social {
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,161 @@
+/* OrdersListing.css */
+
+.container {
+    padding: 20px;
+    background-color: #F7F7F7;
+  }
+  
+  .app-bar {
+    background: none !important;
+    box-shadow: none !important;
+    width: 100% !important;
+   
+  }
+  
+  .filter-button {
+    margin-left: 1rem;
+    color: #BDBDBD !important;
+    border: 1px solid #838383 !important;
+    padding: 0.88rem 0 .88rem .88rem !important;
+  }
+  
+  .search-button {
+    background: black !important;
+    padding: 0.9rem 2rem !important;
+    margin-left: 1rem !important;
+
+  }
+  
+  .grid-container {
+    margin-top: 20px;
+    justify-content: center;
+  }
+  
+  .grid-item {
+    width: 97%;
+    /* background-color:red; */
+    border-radius: 0;
+    box-shadow: none !important;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: none !important;
+    border: 1px solid #E2E2E2;
+
+  }
+
+  .order-content{
+    width: 60%;
+    align-items: center;
+  }
+  
+  .card-content {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    align-items: center;
+  }
+  .card-content:last-child{
+    align-self: flex-end;
+  }
+  .card-image {
+    height: 150px;
+    object-fit: cover;
+    width: 150px;
+  }
+  
+  .details {
+    margin-left: 15px;
+  }
+  
+  .price-content,
+  .status-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .price {
+    min-width: 100px;
+  }
+  
+  .status {
+    min-width: 200px;
+  }
+  
+  .order-content{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .status-content {
+    width: 40%;
+    align-items: initial;
+  }
+
+  .main-order-status{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+  }
+
+ .dialog-content{
+    width: 25rem;
+    height: 7rem;
+ }
+
+ .details{
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+ }
+
+ .filter-title{
+    margin-bottom: 1rem;
+ }
+
+ .spacer{
+    margin-bottom: 1rem;
+ }
+ .order-img-content{
+    display: flex;
+    width: 100%;
+    align-items: center;
+ }
+
+ @media screen and (max-width: 750px) {
+    .card-content{
+        flex-direction: column;
+        justify-content: initial;
+        align-items: initial;
+    }
+
+    .status-content, .order-content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .price-content{
+        padding: .5rem 0 !important;
+        align-self: initial;
+        margin: 0 !important;
+    }
+    .card{
+        flex-direction: column;
+    }
+
+    .details{
+        flex-direction: column;
+    }
+
+ }
+
+ @media screen and (min-width: 370px) and (max-width: 410px) {
+    .dialog-content{
+        width: 100%;
+    }
+  }

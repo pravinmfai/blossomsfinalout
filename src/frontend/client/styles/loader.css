@@ -1,0 +1,30 @@
+/* styles/loader.css */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: #f3f3f3;
+    z-index: 9999;
+  }
+  
+  .loader-bar {
+    width: 0;
+    height: 100%;
+    background-color: #3498db;
+    animation: load 2s ease-out infinite;
+  }
+  
+  @keyframes load {
+    0% {
+      width: 0;
+    }
+    50% {
+      width: 50%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
