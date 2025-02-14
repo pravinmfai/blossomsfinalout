@@ -1,28 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import ProductList from './components/ProductList';
-import EditProduct from './components/EditProduct'; // Import the EditProduct page
-import CreateProduct from './components/CreateProduct'; // Import the CreateProduct page
-import OrderList from './components/OrderList'; // Import the OrderList component
-import Dashboard from './components/Dashboard'; 
-import './admin.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import ProductList from "./components/ProductList";
+import EditProduct from "./components/EditProduct";
+import CreateProduct from "./components/CreateProduct";
+import OrderList from "./components/OrderList";
+import Dashboard from "./components/Dashboard";
+import './admin.css'
 
-const Admin = () => {
+function Admin() {
   return (
-    <Router>
-      <div className="container">
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<ProductList />} />
-          <Route path="/edit-product/:id" element={<EditProduct />} /> {/* Edit Product Route */}
-          <Route path="/create-product" element={<CreateProduct />} /> {/* New Create Product Route */}
-          <Route path="/orders" element={<OrderList />} />
-          <Route path="/dashboard" element={<Dashboard />} /> {/* New Dashboard route */}
-        </Routes>
-      </div>
-    </Router>
+    <div className="container">
+      <Sidebar />
+      <Routes>
+        <Route path="/admin" element={<ProductList />} />
+        <Route path="/admin/edit-product/:id" element={<EditProduct />} />
+        <Route path="/admin/create-product" element={<CreateProduct />} />
+        <Route path="/admin/orders" element={<OrderList />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
+      </Routes>
+    </div>
   );
-};
+}
 
 export default Admin;
