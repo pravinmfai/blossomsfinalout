@@ -10,15 +10,17 @@ const ProductList = ({ searchQuery,dropdownOption  }) => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('https://backend-1dmw.onrender.com/api/products');
-        setProducts(response.data); // Assuming the data comes as an array
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
+  useEffect(() => {const fetchProducts = async () => {
+    try {
+      const response = await axios.get('https://backend-blssm-1.onrender.com/api/products', {
+        withCredentials: true // This ensures cookies and auth headers are included
+      });
+      setProducts(response.data); // Assuming the data comes as an array
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
+  
 
     fetchProducts();
   }, []);
@@ -88,7 +90,7 @@ const ProductList = ({ searchQuery,dropdownOption  }) => {
                 key={product._id}
                 onClick={() => handleProductClick(product)}
               >
-                <img src={`https://backend-1dmw.onrender.com${product.imageUrl}`} alt="" />
+                <img src={`https://backend-blssm-1.onrender.com/api/products${product.imageUrl}`} alt="" />
                 <h3>{product.name}</h3>
                 <p className='category'>{product.category}</p>
                 <StarRating rating={product.ratings} />

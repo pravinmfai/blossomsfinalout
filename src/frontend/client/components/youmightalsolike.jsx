@@ -11,7 +11,7 @@ const Youmightalsolike = ({tags}) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://backend-1dmw.onrender.com/api/products');
+        const response = await axios.get('https://backend-blssm-1.onrender.com/api/products');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -52,11 +52,11 @@ const Youmightalsolike = ({tags}) => {
             key={product._id} 
             onClick={() => handleProductClick(product)}
           >
-            <img src={`https://backend-1dmw.onrender.com${product.imageUrl}`} alt="product" />
+            <img src={`https://backend-blssm-1.onrender.com${product.imageUrl}`} alt="product" />
             <h3>{product.name}</h3>
             <p className='category-ymal'>{product.category}</p>
             <StarRating rating={product.ratings} />
-            <p className='price-ymal'><span className='offprice-ymal'>₹  {calculateOfferPrice(product.price, product.discountPercentage)}</span><span className='ogprice-ymal'>₹{product.price}</span></p>
+            <p className='price-ymal'><span className='offprice-ymal'>₹{calculateOfferPrice(product.price, product.discountPercentage)}</span><span className='ogprice-ymal'>₹{product.price}</span></p>
             <button className='addtocart ymal'>
               <img src={cart} alt="cart" />
               Add to cart

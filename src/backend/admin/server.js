@@ -10,7 +10,7 @@ const connectDB = require('./config/db'); // If db.js is inside config folder
 const multer = require('multer'); // Import multer
 const orderRoutes = require('./routes/orderRoutes');
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6000;
 
 // Connect to MongoDB
 connectDB();

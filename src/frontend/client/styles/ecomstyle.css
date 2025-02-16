@@ -256,6 +256,7 @@
   font-family: Manrope;
   font-weight: 600;
   margin:0 4px 0 0;
+  color: black;
 }
 
 .ogprice{
@@ -282,6 +283,7 @@
   align-items: center;
   justify-content: center;
   column-gap: 10px;
+  color: black;
 }
 
 .addtocart > img{
@@ -537,6 +539,7 @@
 .buttontobuysection > .addtocart{
   width: 50%;
   transition: transform 0.2s;
+  color: black;
 }
 
 .addtocart:hover{
@@ -606,6 +609,7 @@
 .reviewrgt > p{
   /* font-size: 16px; */
   font-size: 1.3vw;
+  color: black;
 }
 
 .contain-loadmorereviews{
@@ -619,7 +623,7 @@
 .loadmorereviews{
   font-family: Manrope;
   font-weight: 600;
-  width: 172px;
+  width: 250px;
   height: 48px;
   margin: 0;
   padding: 14px 24px;
@@ -627,6 +631,7 @@
   border: solid 1px black;
   background: none;
   cursor: pointer;
+  color: black;
 }
 
 

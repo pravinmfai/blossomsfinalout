@@ -19,7 +19,7 @@ const Explcotsaree = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://backend-1dmw.onrender.com/api/products');
+        const response = await axios.get('https://backend-blssm-1.onrender.com/api/products');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
