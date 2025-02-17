@@ -36,17 +36,17 @@ const Productdesc = ({product}) => {
 
     <div className='productdescsec'>
       <div className='productimg-sec-lf'>
-        <img className='image' src={`https://backend-1dmw.onrender.com${product.imageUrl}`} alt="product" />
+        <img className='image' src={`https://backend-blssm-1.onrender.com${product.imageUrl}`} alt="product" />
       </div>
 
       <div className='productdesc-sec-rg'>
           <div className='productdetails'>
             <h1>{product.name}</h1>
-            <p className='category'>{product.category}</p>
-            <div className='ratingsec'>
+            <p className='category'>{product.description}</p>
+            {/* <div className='ratingsec'>
               <StarRating rating={product.ratings} />
               <span>{product.ratings}/5</span>
-            </div>
+            </div> */}
 
             <p className='price'><span className='offprice'>₹{calculateOfferPrice(product.price, product.discountPercentage)}</span><span className='ogprice'>₹{product.price}</span></p>
             <p className='instock'>In-Stock</p>

@@ -1,6 +1,7 @@
 import React ,{useEffect,useState}from 'react'
 import axios from 'axios';
 import '../styles/explcotsaree.css';
+import { Link } from 'react-router-dom';
 
 import StarRating from '../components/starRating';
 import { useNavigate } from 'react-router-dom';
@@ -52,10 +53,10 @@ const Explcotsaree = () => {
             key={product._id} 
             onClick={() => handleProductClick(product)}
           >
-            <img src={`https://backend-1dmw.onrender.com${product.imageUrl}`} alt="product" />
+            <img src={`https://backend-blssm-1.onrender.com${product.imageUrl}`} alt="product" />
             <h3>{product.name}</h3>
-            <p className='category-ymal'>{product.category}</p>
-            <StarRating rating={product.ratings} />
+            <p className='category-ymal'>{product.description.length > 50 ? `${product.description.slice(0,60)}..`: product.description}</p>
+            <br></br>
             <p className='price-ymal'><span className='offprice-ymal'>₹{calculateOfferPrice(product.price, product.discountPercentage)}</span><span className='ogprice-ymal'>₹{product.price}</span></p>
             <button className='addtocart ymal'>
               <img src={cart} alt="cart" />
@@ -65,7 +66,7 @@ const Explcotsaree = () => {
           )
         })}
         </div>
-        <button className='viewpro'>View all products</button>
+        <Link to="/shop" className='viewpro'>View all products</Link>
       
     </div>
   )

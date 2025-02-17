@@ -90,7 +90,7 @@ const ProductList = ({ searchQuery,dropdownOption  }) => {
                 key={product._id}
                 onClick={() => handleProductClick(product)}
               >
-                <img src={`https://backend-blssm-1.onrender.com/api/products${product.imageUrl}`} alt="" />
+                <img src={`https://backend-blssm-1.onrender.com${product.imageUrl}`} alt="" />
                 <h3>{product.name}</h3>
                 <p className='category'>{product.category}</p>
                 <StarRating rating={product.ratings} />

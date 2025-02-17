@@ -352,9 +352,11 @@
 .productdetails > .category{
   color: #404040;
   font-family: Manrope;
-  font-size: 1.6vw;
-  font-weight: 600;
+  font-size: 1vw;
+  font-weight: 500;
   margin: 0 0 3% 0;
+  white-space: pre-line;
+  text-align: justify;
 }
 
 .ratingsec{
@@ -394,6 +396,7 @@
 .price{
   /* margin: 16px 0 20px 0; */
   margin: 2% 0 2% 0;
+  text-align: left;
 }
 
 .instock{

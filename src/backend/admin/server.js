@@ -18,7 +18,7 @@ connectDB();
 // Enable CORS
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:5000","https://backend-1dmw.onrender.com/api/products"],
+    origin: ["http://localhost:3000", "http://localhost:5000","https://backend-blssm-1.onrender.com/api/products"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
     exposedHeaders: ["Content-Type", "Authorization"],
