@@ -24,9 +24,6 @@ import Explcotsaree from "./components/explcotsaree";
 import ProductListMPG from "./pages/productListMPG";
 import ProductdescMPG from "./pages/productdescMPG";
 import AboutUs from "./pages/AboutUs";
-import Dashboard from "./pages/dashboard";
-import AdminDashboard from "./pages/adminDashboard";
-import AdminLogin from "./pages/adminLogin";
 import SignUp from "./pages/signup";
 import Login from "./pages/login";
 import ResetPassword from "./components/resetPasswordVerify";
@@ -34,12 +31,7 @@ import ResetPass from "./components/resetPassword";
 import SetPassword from "./components/setpassword";
 import OrdersListingPage from "./pages/userOrderPage";
 
-// Admin-related components
-import EditProduct from "./components/EditProduct";
-import CreateProduct from "./components/CreateProduct";
-import OrderList from "./components/OrderList";
-//eslint-disable-next-line
-import ProductList from "./components/ProductList";
+
 
 import { CartProvider } from "./context/CartContext";
 import { AddressProvider } from "./context/AddressContext";
@@ -111,13 +103,13 @@ function Client() {
               <Route path="/set-password" element={<SetPassword />} />
               <Route path="/user-orders" element={<OrdersListingPage />} />
 
-              {/* Admin routes */}
+              {/* Admin routes
               <Route path="/admin-login" element={<AdminLogin />} />
               <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/edit-product/:id" element={<EditProduct />} />
               <Route path="/create-product" element={<CreateProduct />} />
-              <Route path="/orders" element={<OrderList />} />
+              <Route path="/orders" element={<OrderList />} /> */}
             </Routes>
 
             <Footer />

@@ -58,10 +58,7 @@ const Explcotsaree = () => {
             <p className='category-ymal'>{product.description.length > 50 ? `${product.description.slice(0,60)}..`: product.description}</p>
             <br></br>
             <p className='price-ymal'><span className='offprice-ymal'>₹{calculateOfferPrice(product.price, product.discountPercentage)}</span><span className='ogprice-ymal'>₹{product.price}</span></p>
-            <button className='addtocart ymal'>
-              <img src={cart} alt="cart" />
-              Add to cart
-            </button>
+            <button className='addtocart ymal'><img src="https://cdn-icons-png.flaticon.com/512/15515/15515011.png" alt="cart" />View Product</button>
           </div>
           )
         })}
