@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/HomeComponent1.css';
 import img from '../assest/trad-saree-1.jpg';
+import { Link } from 'react-router-dom';
 
 const HomeComponent1 = () => {
   return (
@@ -14,7 +15,7 @@ const HomeComponent1 = () => {
             <p>
             Comfortable and beautiful sarees for every day.
             </p>
-            <button className="shop-button">Shop now</button>
+            <Link to="/shop" className="shop-button">Shop now</Link>
         </div>
       </section>
     </div>

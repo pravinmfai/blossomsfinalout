@@ -72,6 +72,7 @@ body {
   cursor: pointer;
   margin-top: 1.5rem;
   align-self: flex-start; /* Ensure button stays left-aligned */
+  text-decoration: none;
 }
 
 /* Styles for the Why Choose Us section */

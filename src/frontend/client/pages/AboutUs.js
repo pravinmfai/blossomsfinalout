@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/AboutUs.css';
 import img from '../assest/aboutus.png';
+import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
   return (
@@ -16,7 +17,7 @@ const AboutUs = () => {
             Discover the allure of cotton sarees at <b>"Blossoms Boutique"</b>. Experience comfort, style, and quality in every piece. 
             Our sarees are 100% pure cotton, ideal for any day or event.
             </p>
-            <button className="explore-button">Explore now</button>
+            <Link to="/shop" className="explore-button">Explore</Link>
         </div>
       </section>
 

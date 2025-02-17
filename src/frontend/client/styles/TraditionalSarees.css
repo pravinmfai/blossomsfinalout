@@ -2,7 +2,6 @@
   display: flex;
   gap: 1.5rem;
   /* padding: 1.5rem; */
-  align-items: center;
   justify-content: center;
   max-width: 90%;
   margin: 0 auto;
@@ -39,6 +38,7 @@
   margin-bottom: 1.5rem;
   display: block;
   text-align: center;
+  text-decoration: none;
   margin-left: auto;
   margin-right: auto; /* Ensures button is centered horizontally */
 }

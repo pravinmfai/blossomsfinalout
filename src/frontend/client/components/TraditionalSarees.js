@@ -5,6 +5,7 @@ import img2 from '../assest/trad-saree-2.jpg';
 import img3 from '../assest/trad-saree-3.jpg';
 import img4 from '../assest/trad-saree-4.jpg';
 import img5 from '../assest/trad-saree-5.jpg';
+import { Link } from 'react-router-dom';
 
 const NewTraditionalSarees = () => {
   return (
@@ -14,7 +15,7 @@ const NewTraditionalSarees = () => {
         <p className="new-sarees-description">
           Check out our latest collection of soft and stylish cotton sarees.
         </p>
-        <button className="new-explore-button">Explore</button>
+        <Link to="/shop" className="new-explore-button">Explore</Link>
         <img src={img1} alt="Main saree" className="new-saree-image new-main-image" />
       </div>
       <div className="new-sarees-column">

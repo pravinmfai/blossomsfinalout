@@ -5,6 +5,7 @@ import img2 from '../assest/tren-sarees-2.jpg';
 import img3 from '../assest/tren-sarees-3.jpg';
 import img4 from '../assest/tren-sarees-4.jpg';
 import img5 from '../assest/tren-sarees-5.jpg';
+import { Link } from 'react-router-dom';
 
 const TrendingSarees = () => {
   return (
@@ -22,8 +23,8 @@ const TrendingSarees = () => {
         <p className="sarees-description">
           Check out our latest collection of soft and stylish cotton sarees.
         </p>
-        <button className="explore-button">Explore</button>
-        <img src={img5} alt="Main saree" className="saree-image main-image" />
+        <Link to="/shop" className="explore-button">Explore</Link>
+        <img src={img5} alt="Main saree" className="trendsaree-image" />
       </div>
     </div>
   );

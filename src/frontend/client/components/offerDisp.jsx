@@ -28,9 +28,9 @@ const OfferDisp = () => {
   
   return (
     <div>
-      <div className='offer-p'>
-        <p>
-          Get 15% Off this Yearend Sale. Grab it fast! {timeLeft.days}D : {timeLeft.hours}H :{' '}
+      <div className='offer-pp'>
+        <p class="offer-pp">
+          Get 20% off till the month of May 2025. Grab it fast! {timeLeft.days}D : {timeLeft.hours}H :{' '}
           {timeLeft.minutes}M : {timeLeft.seconds}S
         </p>
       </div>
