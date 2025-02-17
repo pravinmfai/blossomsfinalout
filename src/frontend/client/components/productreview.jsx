@@ -57,9 +57,9 @@ const Productreview = () => {
         ))}
       </div>
 
-      <div className='contain-loadmorereviews'>
+      {/* <div className='contain-loadmorereviews'>
         <button className='loadmorereviews'>Load More reviews</button>
-      </div>
+      </div> */}
     </div>
   );
 }
