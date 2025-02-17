@@ -44,7 +44,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="footer-bottom">
-        <p>© 2024 All Rights Reserved. Blossoms Boutique enhanced by MindFulAI Pvt Ltd.</p>
+        <p>© 2025 All Rights Reserved. Blossoms Boutique enhanced by MindFulAI Pvt Ltd.</p>
       </div>
     </footer>
   );

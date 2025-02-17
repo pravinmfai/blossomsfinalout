@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 import OrderConfirmation from "./components/OrderConfirmation";
+//eslint-disable-next-line
 import AuthForm from "./components/AuthForm";
 import ProtectedRoute from "./components/protectedRoute";
 
@@ -37,13 +38,16 @@ import OrdersListingPage from "./pages/userOrderPage";
 import EditProduct from "./components/EditProduct";
 import CreateProduct from "./components/CreateProduct";
 import OrderList from "./components/OrderList";
+//eslint-disable-next-line
 import ProductList from "./components/ProductList";
 
 import { CartProvider } from "./context/CartContext";
 import { AddressProvider } from "./context/AddressContext";
+import SareeCategories from "./pages/SareeCategories";
 
 function Client() {
   const [searchQuery, setSearchQuery] = useState("");
+  //eslint-disable-next-line
   const [dropdownOption, setDropdownOption] = useState("Featured");
 
   const handleSearch = (query) => {
@@ -74,6 +78,7 @@ function Client() {
                     <Explcotsaree />
                     <TraditionalSarees />
                     <TrendingSarees />
+                    <SareeCategories/>
                     <TestimonialSlider />
                   </>
                 }

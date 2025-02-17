@@ -49,7 +49,7 @@ const Login = () => {
     return (
         <div className='login-container'>
             <div className='login-wrapper'>
-            <img src="/bb-logo.png" alt="logo" className='logo'/>
+            <img src="../assest/bb-logo.png" alt="logo" className='logo'/>
             <h2>Welcome to Blossom Boutique!</h2>
             <p>Please enter your email and password to continue.</p>
             <form onSubmit={handleSubmit}>

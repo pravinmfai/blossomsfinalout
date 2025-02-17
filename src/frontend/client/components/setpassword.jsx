@@ -35,7 +35,7 @@ const SetPassword = () => {
             return;
         }
        
-
+        console.log("Response-");
         // Make a single POST request to the new combined route
         axios.post('http://localhost:5000/api/auth/signup', { user_json_url, email, phoneNumber, password })
             .then(response => {

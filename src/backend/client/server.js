@@ -25,7 +25,7 @@ app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // To parse cookies
 
 // CORS Configuration
-const allowedOrigins = ['http://localhost:3000', 'https://your-deployed-frontend.com']; // Add more origins as needed
+const allowedOrigins = ['http://localhost:3000', 'https://blossomsbotique.com/']; // Add more origins as needed
 
 app.use(cors({
   origin: function (origin, callback) {

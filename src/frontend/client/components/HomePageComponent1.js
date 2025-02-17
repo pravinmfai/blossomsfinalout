@@ -10,7 +10,7 @@ const HomeComponent1 = () => {
             <img src={img} alt="Cotton Sarees" />
         </div>
         <div className="home-content">
-            <h1>Soft, Pure Cotton Sarees Just for You.</h1>
+            <h1>Soft, Pure Cotton Sarees<br></br> Just for You.</h1>
             <p>
             Comfortable and beautiful sarees for every day.
             </p>

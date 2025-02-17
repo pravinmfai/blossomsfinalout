@@ -1,0 +1,70 @@
+.container {
+    text-align: center;
+    padding: 50px;
+    background-color: #f5f5f5;
+  }
+  
+  .title {
+    font-size: 32px;
+    font-family: serif;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    color: #666;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .saree-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .saree-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .saree-card:hover .saree-image {
+    transform: scale(1.1);
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+  }
+  
+  .saree-card:hover .overlay {
+    opacity: 1;
+  }
+  
+  .overlay-text {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
