@@ -9,7 +9,7 @@ const cors = require("cors");
 const app = express();
 app.use(express.json({ limit: "10mb" })); // Support for profile picture uploads
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:5000", "https://backend-blssm-1.onrender.com/api/products"],
+  origin: ["http://localhost:3000", "http://localhost:5000", "https://blossomsbotique.com"],
   credentials: true,
 }));
 
