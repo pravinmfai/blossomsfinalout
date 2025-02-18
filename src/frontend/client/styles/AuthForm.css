@@ -16,6 +16,7 @@
     max-width: 400px;
     display: flex;
     flex-direction: column;
+    margin-left: -8%;
   }
   
   h2 {
@@ -92,3 +93,13 @@
     }
   }
   
+.refund-policy{
+  margin-top: 200px;
+}
+
+.refund-policy p{
+  text-align: left;
+}
+.refund-policy h2{
+  text-align: left;
+}

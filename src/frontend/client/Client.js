@@ -14,6 +14,12 @@ import OrderConfirmation from "./components/OrderConfirmation";
 //eslint-disable-next-line
 import AuthForm from "./components/AuthForm";
 import ProtectedRoute from "./components/protectedRoute";
+import UserPage from "./pages/UserPage";
+import AddressPage from "./components/AddressForm";
+import Terms from "./pages/Terms";
+import Shipping from "./pages/Shipping";
+import Refund from "./pages/Refund";
+import Privacy from "./pages/Privacy";
 
 // Pages
 import HomeComponent1 from "./components/HomePageComponent1";
@@ -94,6 +100,11 @@ function Client() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />
+              <Route path="/user" element={<UserPage />} />
+              <Route path="/terms" element={<Terms/>}/>
+              <Route path="/shipping" element={<Shipping/>}/>
+              <Route path="/refund" element={<Refund/>}/>
+              <Route path="/privacy" element={<Privacy/>}/>
 
               {/* Auth and User routes */}
               <Route path="/login" element={<Login />} />
@@ -102,6 +113,7 @@ function Client() {
               <Route path="/reset-password" element={<ResetPass />} />
               <Route path="/set-password" element={<SetPassword />} />
               <Route path="/user-orders" element={<OrdersListingPage />} />
+              <Route path="/address" element={<AddressPage />} />
 
               {/* Admin routes
               <Route path="/admin-login" element={<AdminLogin />} />

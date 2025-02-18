@@ -28,8 +28,6 @@ const Explcotsaree = () => {
     };
     fetchProducts();
   }, []);
-
-  console.log(products.imageUrl);
   
 
 

@@ -62,6 +62,11 @@
     position: absolute;
     transform: translate(-160%, 60%);
 }
+
+.password-view-btn{
+    padding: none;
+}
+
 .bottom-text{
     text-align: center;
     margin-top: 1rem;

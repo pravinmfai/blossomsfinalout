@@ -37,14 +37,14 @@ const SetPassword = () => {
        
         console.log("Response-");
         // Make a single POST request to the new combined route
-        axios.post('http://localhost:5000/api/auth/signup', { user_json_url, email, phoneNumber, password })
+        axios.post('http://localhost:5000/api/auth/register', { user_json_url, email, phoneNumber, password })
             .then(response => {
                 const { data } = response;
                 if (data.error) {
                     window.alert(data.error)
                 } else {
                     // Redirect to dashboard after successful signup
-                    navigate('/dashboard');
+                    navigate('/login');
                 }
             })
             .catch(err => {

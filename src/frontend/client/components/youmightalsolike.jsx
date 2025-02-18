@@ -54,7 +54,7 @@ const Youmightalsolike = ({tags}) => {
           >
             <img src={`https://backend-blssm-1.onrender.com${product.imageUrl}`} alt="product" />
             <h3>{product.name}</h3>
-            <p className='category-ymal'>{product.category}</p>
+            <p className='category-ymal'>{product.description.length > 50 ? `${product.description.slice(0,60)}..`: product.description}</p>
             <StarRating rating={product.ratings} />
             <p className='price-ymal'><span className='offprice-ymal'>₹{calculateOfferPrice(product.price, product.discountPercentage)}</span><span className='ogprice-ymal'>₹{product.price}</span></p>
             <button className='addtocart ymal'>
