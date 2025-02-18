@@ -20,7 +20,7 @@ const AdminLogin = () => {
 
         try {
             // Send login request to backend
-            const response = await axios.post('http://localhost:5000/api/admin/login', { email, password });
+            const response = await axios.post('https://blossomsfinalout.onrender.com/api/admin/login', { email, password });
 
             if (response.status === 200) {
                 // Successful login, redirect to admin dashboard

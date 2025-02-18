@@ -58,7 +58,7 @@ const OrdersListing = () => {
     const fetchUserEmail = async () => {
       try {
         if (userId) {
-          const userResponse = await fetch(`http://localhost:5000/api/auth/getuser/${userId}`);
+          const userResponse = await fetch(`https://blossomsfinalout.onrender.com/api/auth/getuser/${userId}`);
           const userData = await userResponse.json();
           setUserEmail(userData.email); // Assuming the email is in userData.email
         }

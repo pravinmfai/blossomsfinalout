@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/orders';
+const API_URL = 'https://blossomsfinalout.onrender.com/api/orders';
 axios.defaults.withCredentials = true;
 
 export const placeOrder = async (orderDetails) => {

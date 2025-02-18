@@ -37,7 +37,7 @@ const Login = () => {
                 ? { email: emailOrPhone.trim(), password }
                 : { phone: emailOrPhone.trim(), password };
 
-            const response = await axios.post("http://localhost:5000/api/auth/login", loginData);
+            const response = await axios.post("https://blossomsfinalout.onrender.com/api/auth/login", loginData);
 
             if (response.data.error) {
                 window.alert(response.data.error);

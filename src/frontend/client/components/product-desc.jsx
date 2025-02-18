@@ -35,7 +35,7 @@ const Productdesc = ({ product }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/cart/add",
+        "https://blossomsfinalout.onrender.com/api/cart/add",
         { productId: product._id, quantity: count },
         {
           headers: { Authorization: `Bearer ${token}` },

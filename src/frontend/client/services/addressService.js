@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/address';
+const API_URL = 'https://blossomsfinalout.onrender.com/api/address';
 axios.defaults.withCredentials = true;
 
 export const saveAddress = async (address) => {

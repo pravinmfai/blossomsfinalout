@@ -46,7 +46,7 @@ const ProductList = ({ searchQuery, dropdownOption }) => {
   
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/cart/add",
+        "https://blossomsfinalout.onrender.com/api/cart/add",
         { productId: product._id, quantity: 1 },
         {
           headers: { Authorization: `Bearer ${token}` },

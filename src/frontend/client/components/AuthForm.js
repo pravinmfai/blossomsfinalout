@@ -24,7 +24,7 @@ const AuthForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const url = isLogin ? 'http://localhost:5000/api/auth/login' : 'http://localhost:5000/api/auth/signup';
+        const url = isLogin ? 'https://blossomsfinalout.onrender.com/api/auth/login' : 'https://blossomsfinalout.onrender.com/api/auth/signup';
       const response = await axios.post(url, form);
 
       if (response.status === 200) {

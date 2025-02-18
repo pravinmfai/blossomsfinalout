@@ -36,7 +36,7 @@ const ResetPass = () => {
        
 
         // Make a single POST request to the new combined route
-        axios.post('http://localhost:5000/api/auth/reset', { phoneNumber,password })
+        axios.post('https://blossomsfinalout.onrender.com/api/auth/reset', { phoneNumber,password })
             .then(response => {
                 const { data } = response;
                 if (data.error) {

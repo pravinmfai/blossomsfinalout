@@ -23,7 +23,7 @@ const UserPage = () => {
         // Fetch user details from MongoDB through API
         const fetchUserData = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/user/profile", {
+                const response = await axios.get("https://blossomsfinalout.onrender.com/api/user/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`,  // Send the token with the request
                     },
@@ -69,7 +69,7 @@ const UserPage = () => {
 
             // Send the updated user data to MongoDB
             const response = await axios.put(
-                "http://localhost:5000/api/user/profile", 
+                "https://blossomsfinalout.onrender.com/api/user/profile", 
                 {
                     name: user.name,
                     email: user.email,

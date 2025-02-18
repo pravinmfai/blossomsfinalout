@@ -1,7 +1,7 @@
 // frontend/src/services/cartService.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/cart'; // Adjust according to your backend route
+const API_URL = 'https://blossomsfinalout.onrender.com/api/cart'; // Adjust according to your backend route
 
 // Make sure credentials are included for cross-origin requests (if using cookies)
 axios.defaults.withCredentials = true;
