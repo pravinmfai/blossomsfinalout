@@ -28,8 +28,8 @@ const Cart = () => {
         window.location.reload();
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (loading) return <div style={{ marginTop: "200px" }}>Loading...</div>;
+    if (error) return <div style={{ marginTop: "200px" }}>Error: {error}</div>;
 
     return (
       <div className="cart-container">
@@ -86,9 +86,12 @@ const Cart = () => {
                     </td>
                     <td>₹{((item.productId.price * item.quantity) * (1 - (item.productId.discountPercentage / 100))).toFixed(2)}</td>
                     <td>
-                      <button onClick={() => removeFromCart(item.productId._id).catch(handleApiError).finally(refreshCart)}>
-                        <i className="fa fa-trash"></i> Remove
-                      </button>
+                                      <button
+                    className="remove-button"
+                    onClick={() => removeFromCart(item.productId._id).catch(handleApiError).finally(refreshCart)}
+                  >
+                    <i className="fa fa-trash"></i> Remove
+                  </button>
                     </td>
                   </tr>
                 ))

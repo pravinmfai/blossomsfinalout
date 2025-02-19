@@ -43,11 +43,11 @@
   text-decoration: none;
 }
 
-@media (min-width: 1280px) {
+/* @media (min-width: 1280px) {
   .home-content p {
     margin-left: -44%;
   }
-}
+} */
 
 /* Mobile Responsive Design */
 @media (max-width: 768px) {
