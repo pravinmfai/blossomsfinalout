@@ -82,7 +82,10 @@ function App() {
                   element={
                     <div className="productdisp">
                       <ProductSearchNav onSearch={handleSearch} onDropdownSelect={handleDropdownSelect} />
-                      <ProductListMPG searchQuery={searchQuery} />
+                      <Routes>
+                        <Route path="/" element={<ProductListMPG searchQuery={searchQuery} />} />
+                        <Route path="productdescription" element={<ProductdescMPG />} />
+                      </Routes>
                     </div>
                   }
                 />
