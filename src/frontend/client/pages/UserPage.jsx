@@ -16,6 +16,7 @@ const UserPage = () => {
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) {
+            localStorage.removeItem("token"); // Remove token before redirecting
             navigate("/login");  // Redirect to login if token is not found
             return;
         }
@@ -31,7 +32,8 @@ const UserPage = () => {
                 setUser(response.data);  // Update user state with data from MongoDB
             } catch (error) {
                 console.error("Error fetching user data", error);
-                navigate("/login");  // Redirect if error occurs (e.g., expired session)
+                localStorage.removeItem("token"); // Remove token before redirecting
+                navigate("/login");  // Redirect if error occurs (e.g., expired session or 404)
             }
         };
 
@@ -63,6 +65,7 @@ const UserPage = () => {
         try {
             const token = localStorage.getItem("token");
             if (!token) {
+                localStorage.removeItem("token"); // Remove token before redirecting
                 navigate("/login");
                 return;
             }
