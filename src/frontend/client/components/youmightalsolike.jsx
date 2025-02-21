@@ -52,7 +52,7 @@ const Youmightalsolike = ({tags}) => {
             key={product._id} 
             onClick={() => handleProductClick(product)}
           >
-            <img src={`https://backend-blssm-1.onrender.com${product.imageUrl}`} alt="product" />
+            <img src={product.imageUrl} alt="product" />
             <h3>{product.name}</h3>
             <p className='category-ymal'>{product.description.length > 50 ? `${product.description.slice(0,60)}..`: product.description}</p>
             <StarRating rating={product.ratings} />

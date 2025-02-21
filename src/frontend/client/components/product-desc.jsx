@@ -62,7 +62,7 @@ const Productdesc = ({ product }) => {
     <div className='productdescsec'>
       {popupMessage && <div className='popup-message'>{popupMessage}</div>}
       <div className='productimg-sec-lf'>
-        <img className='image' src={`https://backend-blssm-1.onrender.com${product.imageUrl}`} alt="product" />
+        <img className='image' src={product.imageUrl} alt="product" />
       </div>
       <div className='productdesc-sec-rg'>
         <div className='productdetails'>

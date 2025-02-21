@@ -97,7 +97,7 @@ const ProductList = ({ searchQuery, dropdownOption }) => {
               key={product._id}
               onClick={() => handleProductClick(product)}
             >
-              <img src={`https://backend-blssm-1.onrender.com${product.imageUrl}`} alt="" />
+              <img src={product.imageUrl} alt="" />
               <h3>{product.name}</h3>
               <p className='productlistpinprodcutshowingoutside'>
                 {product.description.length > 50 ? `${product.description.slice(0, 60)}...` : product.description}

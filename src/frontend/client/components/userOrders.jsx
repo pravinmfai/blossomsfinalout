@@ -176,7 +176,7 @@ const OrdersListing = () => {
                   <div className='order-img-content'>
 
                     {/* <img src={sareeImg} alt={order.primaryInfo.productName} className="card-image" /> */}
-                    <img src= {`https://backend-blssm-1.onrender.com/${order.primaryInfo.imageUrl}`}  alt={order.primaryInfo.productName} className="card-image" />
+                    <img src= {order.primaryInfo.imageUrl}  alt={order.primaryInfo.productName} className="card-image" />
                     <div className="details">
                       <div className='order-text-container'>
                         <Typography variant="h6">{order.primaryInfo.productName}</Typography>

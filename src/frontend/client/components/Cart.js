@@ -58,7 +58,7 @@ const Cart = () => {
                       {item.productId ? (
                         <>
                         <img
-                        src={item.productId.imageUrl ? `https://backend-blssm-1.onrender.com${item.productId.imageUrl}` : 'default-image-url.jpg'}
+                        src={item.productId.imageUrl}
                         alt={item.productId.name || 'Product'}
                         className="product-img"
                         />
