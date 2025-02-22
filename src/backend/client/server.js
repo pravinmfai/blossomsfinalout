@@ -7,9 +7,9 @@ const Razorpay = require("razorpay");
 const cors = require("cors");
 
 const app = express();
-app.use(express.json({ limit: "10mb" })); // Support for profile picture uploads
+app.use(express.json({ limit: "5mb" })); // Support for profile picture uploads
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:5000", "https://blossomsbotique.com"],
+  origin: ["http://localhost:3000", "https://blossomsbotique.com"],
   credentials: true,
 }));
 
