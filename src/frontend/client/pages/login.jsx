@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/login.css";
+import imglogo from "../assest/bb-logo.png";
 
 const Login = () => {
     const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -56,7 +57,7 @@ const Login = () => {
     return (
         <div className='login-container'>
             <div className='login-wrapper'>
-                <img src="../assest/bb-logo.png" alt="logo" className='logo' />
+                <img src={imglogo} alt="logo" className='logo' />
                 <h2>Welcome to Blossom Boutique!</h2>
                 <p>Please enter your email and password to continue.</p>
                 <form onSubmit={handleSubmit}>
@@ -83,7 +84,7 @@ const Login = () => {
                         />
                         <button
                             type="button"
-                            className='password-view'
+                            className='lpassword-view'
                             onClick={togglePasswordVisibility}
                         >
                             {showPassword ? <FaEyeSlash /> : <FaEye />}

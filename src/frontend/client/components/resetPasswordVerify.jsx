@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import for navigation
 import "../styles/SetPassword.css"
+import imglogo from "../assest/bb-logo.png"
 
 
 const ResetPassword = () => {
@@ -45,7 +46,7 @@ const ResetPassword = () => {
     return (
         <div className='set-password-container'>
         <div className='set-password-wrapper'>
-        <img src="/bb-logo.png" alt="logo" className='logo'/>
+        <img src={imglogo} alt="logo" className='logo'/>
         <h2 >Please enter your phone number to verify</h2>
             <form onSubmit={handleSubmit}>
                 <div>

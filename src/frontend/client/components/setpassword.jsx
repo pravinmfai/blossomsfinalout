@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 import "../styles/SetPassword.css"
+import imglogo from "../assest/bb-logo.png"
 
 const SetPassword = () => {
     const [password, setPassword] = useState('');
@@ -55,7 +56,7 @@ const SetPassword = () => {
     return (
         <div className='set-password-container'>
             <div className='set-password-wrapper'>
-            <img src="/bb-logo.png" alt="logo" className='logo'/>
+            <img src={imglogo} alt="logo" className='logo'/>
             <h2>Set Password</h2>
             <form onSubmit={handleSubmit}>
                 <div className='set-pass-container'>

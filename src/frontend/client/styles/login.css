@@ -21,6 +21,7 @@
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 150px;
 }
 
 .labels{
@@ -57,14 +58,9 @@
 .pass-container{
     position: relative;
 }
-.password-view{
+.lpassword-view{
     font-size: 1.25rem;
-    position: absolute;
-    transform: translate(-160%, 60%);
-}
-
-.password-view-btn{
-    padding: none;
+    transform: translate(900%, -190%);
 }
 
 .bottom-text{
