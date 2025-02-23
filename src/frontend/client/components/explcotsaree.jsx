@@ -3,13 +3,10 @@ import axios from 'axios';
 import '../styles/explcotsaree.css';
 import { Link } from 'react-router-dom';
 
-import StarRating from '../components/starRating';
 import { useNavigate } from 'react-router-dom';
-import cart from '../assest/cart.svg';
 
 const Explcotsaree = () => {
   const [products, setProducts] = useState([]);
-  const tags = "traditional";
 
   function calculateOfferPrice(originalPrice, discountPercentage) {
     const discountAmount = (originalPrice * discountPercentage) / 100;
