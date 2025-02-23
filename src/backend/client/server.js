@@ -7,13 +7,13 @@ const Razorpay = require("razorpay");
 const cors = require("cors");
 
 const app = express();
-app.use(express.json({ limit: "5mb" })); // Support for profile picture uploads
+app.use(express.json({ limit: "5mb" }));
 app.use(cors({
   origin: ["http://localhost:3000", "https://blossomsbotique.com"],
   credentials: true,
 }));
 
-// MongoDB Connection
+// ✅ MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,11 +22,10 @@ mongoose.connect(process.env.MONGO_URI, {
 const db = mongoose.connection;
 db.on("connected", () => console.log("✅ MongoDB Connected Successfully"));
 db.on("error", (err) => console.error("❌ MongoDB Connection Error:", err));
-db.on("disconnected", () => console.log("⚠️ MongoDB Disconnected"));
 
-// User Schema
+// ✅ User Schema
 const UserSchema = new mongoose.Schema({
-  name: { type: String, default: "User" },
+  name: String,
   email: String,
   phone: String,
   password: String,
@@ -35,7 +34,27 @@ const UserSchema = new mongoose.Schema({
 });
 const User = mongoose.model("User", UserSchema);
 
-// Auth Controller
+// ✅ Razorpay Setup
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
+// ✅ Authentication Middleware
+const authMiddleware = async (req, res, next) => {
+  const token = req.headers["authorization"];
+  if (!token) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    const decoded = jwt.verify(token.split(" ")[1], process.env.JWT_SECRET);
+    req.user = await User.findById(decoded.userId);
+    next();
+  } catch (err) {
+    res.status(401).json({ error: "Invalid token" });
+  }
+};
+
+// ✅ Register User
 app.post("/api/auth/register", async (req, res) => {
   const { name, email, phone, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -44,6 +63,7 @@ app.post("/api/auth/register", async (req, res) => {
   res.json({ message: "User registered successfully" });
 });
 
+// ✅ Login User
 app.post("/api/auth/login", async (req, res) => {
   try {
     const { email, phone, password } = req.body;
@@ -65,103 +85,75 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
-// Middleware to Authenticate User
-const authMiddleware = async (req, res, next) => {
-  const token = req.headers["authorization"];
-  if (!token) return res.status(401).json({ error: "Unauthorized" });
-  try {
-    const decoded = jwt.verify(token.split(" ")[1], process.env.JWT_SECRET);
-    req.user = await User.findById(decoded.userId);
-    next();
-  } catch (err) {
-    res.status(401).json({ error: "Invalid token" });
-  }
-};
-
-// Get User Profile (This is the route you're missing)
+// ✅ Fetch User Profile
 app.get("/api/user/profile", authMiddleware, async (req, res) => {
   try {
-    const user = req.user; // This comes from the middleware (authenticated user)
-    res.json(user);  // Send the user data as a response
+    res.json(req.user);
   } catch (err) {
     res.status(500).json({ error: "Error fetching user data" });
   }
 });
 
-// Update User Profile
-app.put("/api/user/profile", authMiddleware, async (req, res) => {
-  const { name, email, phone, profilePic } = req.body;
+// ✅ Razorpay Order Creation
+app.post("/api/order/create", authMiddleware, async (req, res) => {
   try {
-    req.user.name = name || req.user.name;
-    req.user.email = email || req.user.email;
-    req.user.phone = phone || req.user.phone;
-    req.user.profilePic = profilePic || req.user.profilePic;
-    await req.user.save();
-    res.json({ message: "Profile updated successfully", user: req.user });
-  } catch (err) {
-    res.status(500).json({ error: "Error updating profile" });
+    const { amount, currency } = req.body;
+
+    if (!amount || amount <= 0) {
+      return res.status(400).json({ error: "Invalid amount" });
+    }
+
+    const options = {
+      amount: amount * 100, // Convert to paise
+      currency: currency || "INR",
+      receipt: `order_${Date.now()}`,
+    };
+
+    const order = await razorpay.orders.create(options);
+
+    res.json({
+      orderId: order.id,
+      amount: order.amount / 100, // Convert back to normal currency format
+      currency: order.currency,
+    });
+  } catch (error) {
+    console.error("Razorpay Order Error:", error);
+    res.status(500).json({ error: "Failed to create Razorpay order" });
   }
 });
 
-// Cart Controller
-
-// Add or update item in cart
+// ✅ Add or Update Cart Item
 app.post("/api/cart/add", authMiddleware, async (req, res) => {
   const { productId, quantity } = req.body;
-  const user = req.user; // User will be added to the request by the authMiddleware
+  const user = req.user;
 
-  // Check if the item already exists in the cart
   const existingItemIndex = user.cart.findIndex(item => item.productId.toString() === productId);
 
   if (existingItemIndex > -1) {
-    // If item exists, update the quantity
     user.cart[existingItemIndex].quantity = quantity;
   } else {
-    // Otherwise, add a new item to the cart
     user.cart.push({ productId, quantity });
   }
 
-  await user.save(); // Save updated user data
+  await user.save();
   res.json({ message: "Item added/updated in cart", cart: user.cart });
 });
 
-// Fetch cart items
+// ✅ Fetch Cart Items
 app.get("/api/cart", authMiddleware, (req, res) => {
-  res.json(req.user.cart); // Send user's cart data
+  res.json(req.user.cart);
 });
 
-// Remove item from cart
+// ✅ Remove Item from Cart
 app.put("/api/cart/remove", authMiddleware, async (req, res) => {
   const { productId } = req.body;
   const user = req.user;
-
-  // Remove the item with the given productId
   user.cart = user.cart.filter(item => item.productId.toString() !== productId);
-
-  await user.save(); // Save the updated user data
+  await user.save();
   res.json({ message: "Item removed from cart", cart: user.cart });
 });
 
-
-// Order Controller with Razorpay
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
-
-app.post("/api/order/create", authMiddleware, async (req, res) => {
-  const { amount, currency } = req.body;
-  const options = { amount: amount * 100, currency, receipt: `order_${Date.now()}` };
-  const order = await razorpay.orders.create(options);
-  res.json(order);
-});
-
-// Health Check Route
-app.get("/api/health", (req, res) => {
-  res.json({ message: "API is running", dbStatus: mongoose.connection.readyState === 1 ? "Connected" : "Not Connected" });
-});
-
-// Address Schema
+// ✅ Address Schema
 const AddressSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   name: String,
@@ -174,16 +166,13 @@ const AddressSchema = new mongoose.Schema({
 
 const Address = mongoose.model("Address", AddressSchema);
 
-// Save Address API
+// ✅ Save Address API
 app.post("/api/address/save", authMiddleware, async (req, res) => {
   try {
     const { name, street, city, state, pincode, phoneNumber } = req.body;
-    
-    // Check if address already exists for the user
     let address = await Address.findOne({ userId: req.user._id });
 
     if (address) {
-      // Update the existing address
       address.name = name;
       address.street = street;
       address.city = city;
@@ -191,16 +180,7 @@ app.post("/api/address/save", authMiddleware, async (req, res) => {
       address.pincode = pincode;
       address.phoneNumber = phoneNumber;
     } else {
-      // Create a new address
-      address = new Address({
-        userId: req.user._id,
-        name,
-        street,
-        city,
-        state,
-        pincode,
-        phoneNumber,
-      });
+      address = new Address({ userId: req.user._id, name, street, city, state, pincode, phoneNumber });
     }
 
     await address.save();
@@ -211,7 +191,7 @@ app.post("/api/address/save", authMiddleware, async (req, res) => {
   }
 });
 
-// Fetch Address API
+// ✅ Fetch Address API
 app.get("/api/address", authMiddleware, async (req, res) => {
   try {
     const address = await Address.findOne({ userId: req.user._id });
@@ -222,6 +202,10 @@ app.get("/api/address", authMiddleware, async (req, res) => {
   }
 });
 
+// ✅ Health Check Route
+app.get("/api/health", (req, res) => {
+  res.json({ message: "API is running", dbStatus: mongoose.connection.readyState === 1 ? "Connected" : "Not Connected" });
+});
 
-// Start Server
+// ✅ Start Server
 app.listen(5000, () => console.log("🚀 Server running on port 5000"));
