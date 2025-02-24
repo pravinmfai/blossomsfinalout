@@ -1,98 +1,85 @@
-import React, { useEffect, useState } from 'react';
-import { useCart } from '../context/CartContext';
-import { useAddress } from '../context/AddressContext';
-import { placeOrder } from '../services/orderService';
-import AddressForm from './AddressForm';
-import Cart from './Cart';
+import React, { useState } from "react";
+import axios from "axios";
 
-const Checkout = () => {
-  const { cartState } = useCart();
-  const { addressState } = useAddress();
-  const [razorpayLoaded, setRazorpayLoaded] = useState(false);
+const Checkout = ({ cartItems, totalAmount, userToken }) => {
+  const [loading, setLoading] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
-  // Load Razorpay script once
-  useEffect(() => {
-    const loadRazorpayScript = () => {
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.async = true;
-      script.onload = () => setRazorpayLoaded(true);
-      document.body.appendChild(script);
-    };
-
-    if (!window.Razorpay) {
-      loadRazorpayScript();
-    } else {
-      setRazorpayLoaded(true);
-    }
-  }, []);
-
-  const handleCheckout = async () => {
-    if (cartState.items.length === 0 || !addressState) {
-      alert('Cart is empty or address not provided!');
-      return;
-    }
-
-    if (!razorpayLoaded) {
-      alert('Payment service is still loading, please wait.');
-      return;
-    }
-
-    const totalAmount = cartState.items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
-
+  const handlePayment = async () => {
     try {
-      // Request order creation from backend
-      const orderResponse = await placeOrder({
-        items: cartState.items,
-        address: addressState,
-        totalAmount,
-      });
+      setLoading(true);
 
-      if (!orderResponse || !orderResponse.orderId) {
-        throw new Error('Invalid order response');
+      // 1️⃣ Create Order on Backend
+      const { data } = await axios.post(
+        "https://blossomsfinalout.onrender.com/api/order/create",
+        { amount: totalAmount, currency: "INR" },
+        { headers: { Authorization: `Bearer ${userToken}` } }
+      );
+
+      if (!data.orderId) {
+        throw new Error("Failed to create order");
       }
 
-      const { orderId, amount, currency } = orderResponse;
-
+      // 2️⃣ Load Razorpay Inside the Page
       const options = {
-        key: 'rzp_live_9Yn46F2ACAFs6k', // Replace with your actual Razorpay Key ID
-        amount: amount * 100, // Razorpay expects the amount in paise
-        currency: currency,
-        name: 'Blossoms Boutique',
-        description: 'Order Payment',
-        order_id: orderId,
-        handler: function (response) {
-          alert('Payment successful!');
-          console.log('Payment ID:', response.razorpay_payment_id);
+        key: "rzp_live_9Yn46F2ACAFs6k", // Razorpay Key
+        amount: data.amount * 100, // Convert to paise
+        currency: data.currency,
+        name: "Blossoms Boutique",
+        description: "Purchase Items",
+        order_id: data.orderId,
+        handler: async (response) => {
+          // 3️⃣ Verify Payment on Backend
+          try {
+            const verifyRes = await axios.post(
+              "https://blossomsfinalout.onrender.com/api/order/verify",
+              response,
+              { headers: { Authorization: `Bearer ${userToken}` } }
+            );
+
+            if (verifyRes.data.success) {
+              setPaymentSuccess(true);
+              alert("🎉 Payment Successful! Thank you for shopping.");
+            } else {
+              alert("❌ Payment verification failed!");
+            }
+          } catch (error) {
+            console.error("Verification Error:", error);
+            alert("❌ Payment verification error!");
+          }
         },
         prefill: {
-          name: addressState.name || 'Customer',
-          email: 'user@example.com', // Replace with actual user email
-          contact: addressState.phoneNumber || '',
+          name: "John Doe",
+          email: "johndoe@example.com",
+          contact: "9999999999",
         },
         theme: {
-          color: '#3399cc',
+          color: "#F37254",
+        },
+        modal: {
+          backdropclose: false, // Prevent closing on background click
+          ondismiss: () => {
+            alert("Payment popup closed. Please try again.");
+          },
         },
       };
 
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
+      const razor = new window.Razorpay(options);
+      razor.open(); // Opens within the page (not a new window)
     } catch (error) {
-      console.error('Error during checkout:', error);
-      alert('Failed to initiate payment. Please try again.');
+      console.error("Payment Error:", error);
+      alert("❌ Payment failed!");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
       <h2>Checkout</h2>
-      <Cart />
-      <AddressForm />
-      <button onClick={handleCheckout} disabled={!razorpayLoaded}>
-        {razorpayLoaded ? 'Proceed to Payment' : 'Loading Payment Gateway...'}
+      <p>Total Amount: ₹{totalAmount}</p>
+      <button onClick={handlePayment} disabled={loading || paymentSuccess}>
+        {loading ? "Processing..." : paymentSuccess ? "Paid ✅" : "Pay Now"}
       </button>
     </div>
   );

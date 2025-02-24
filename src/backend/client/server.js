@@ -85,14 +85,23 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
-// ✅ Fetch User Profile
+// ✅ Fetch User Profile with Password Masking
 app.get("/api/user/profile", authMiddleware, async (req, res) => {
   try {
-    res.json(req.user);
+    const user = req.user;
+
+    // Double encrypt password using bcrypt
+    const encryptedPassword = await bcrypt.hash(user.password, 10);
+
+    res.json({
+      ...user.toObject(),
+      password: encryptedPassword || "********", // Mask if encryption fails
+    });
   } catch (err) {
     res.status(500).json({ error: "Error fetching user data" });
   }
 });
+
 
 // ✅ Razorpay Order Creation
 app.post("/api/order/create", authMiddleware, async (req, res) => {
