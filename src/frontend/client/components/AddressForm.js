@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAddress } from '../context/AddressContext';
 import '../styles/AddressForm.css';
-import { useNavigate } from 'react-router-dom'; // Correct import
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
 
 const AddressForm = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
+  const location = useLocation(); // Get state from navigation
   const { saveAddress } = useAddress();
   const [address, setAddress] = useState({
     name: '',
@@ -12,11 +13,11 @@ const AddressForm = () => {
     city: '',
     state: '',
     pincode: '',
-    phoneNumber: '' 
+    phoneNumber: ''
   });
+  const totalPrice = location.state?.totalPrice || 0; // Retrieve totalPrice from state
 
   useEffect(() => {
-    // Fetch name and phone number from user API and pre-fill them
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem('token');
@@ -56,11 +57,11 @@ const AddressForm = () => {
         },
         body: JSON.stringify(address),
       });
-  
+
       if (!response.ok) throw new Error("Failed to save address");
-  
+
       alert("Address saved successfully!");
-      navigate('/checkout'); // Correct way to navigate
+      navigate('/checkout', { state: { address, totalPrice } });
     } catch (error) {
       console.error("Error saving address:", error);
       alert("Failed to save address. Please try again.");
@@ -71,20 +72,8 @@ const AddressForm = () => {
     <div className="address-form-container">
       <form onSubmit={handleSubmit} className="address-form">
         <h2>Enter your address</h2>
-        <input
-          type="text"
-          name="name"
-          value={address.name} 
-          readOnly
-          className="address-input readonly"
-        />
-        <input
-          type="text"
-          name="phoneNumber"
-          value={address.phoneNumber} 
-          readOnly
-          className="address-input readonly"
-        />
+        <input type="text" name="name" value={address.name} readOnly className="address-input readonly" />
+        <input type="text" name="phoneNumber" value={address.phoneNumber} readOnly className="address-input readonly" />
         <input type="text" name="street" placeholder="Full Address [Door No, Street, Area, Colony]" value={address.street} onChange={handleChange} required className="address-input" />
         <input type="text" name="city" placeholder="City" value={address.city} onChange={handleChange} required className="address-input" />
         <input type="text" name="state" placeholder="State" value={address.state} onChange={handleChange} required className="address-input" />

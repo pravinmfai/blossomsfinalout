@@ -114,7 +114,12 @@ const Cart = () => {
             <p>Grand-total</p>
             <p>₹{totalPrice}</p>
           </div>
-          <button className="checkout-btn" onClick={() => window.location.href = '/address'}>Checkout now</button>
+          <button
+          className="checkout-btn"
+          onClick={() => navigate("/address", { state: { cartItems, totalPrice } })}
+        >
+          Checkout now
+        </button>
         </div>
       </div>
     );

@@ -106,15 +106,15 @@ app.get("/api/user/profile", authMiddleware, async (req, res) => {
 // ✅ Razorpay Order Creation
 app.post("/api/order/create", authMiddleware, async (req, res) => {
   try {
-    const { amount, currency } = req.body;
+    const { amount, currency = "INR" } = req.body;
 
     if (!amount || amount <= 0) {
       return res.status(400).json({ error: "Invalid amount" });
     }
 
     const options = {
-      amount: amount * 100, // Convert to paise
-      currency: currency || "INR",
+      amount: Math.round(amount * 100), // Convert to paise
+      currency,
       receipt: `order_${Date.now()}`,
     };
 
@@ -126,10 +126,11 @@ app.post("/api/order/create", authMiddleware, async (req, res) => {
       currency: order.currency,
     });
   } catch (error) {
-    console.error("Razorpay Order Error:", error);
-    res.status(500).json({ error: "Failed to create Razorpay order" });
+    console.error("🛑 Razorpay Order Error:", error);
+    res.status(500).json({ error: "Failed to create Razorpay order", details: error.message });
   }
 });
+
 
 // ✅ Add or Update Cart Item
 app.post("/api/cart/add", authMiddleware, async (req, res) => {
