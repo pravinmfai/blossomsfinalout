@@ -13,14 +13,29 @@ const Cart = () => {
         if (!token) {
             alert("Please log in to access your cart");
             navigate("/login");
+        } else {
+            const tokenTime = localStorage.getItem("tokenTime");
+            const currentTime = Date.now();
+            if (tokenTime && currentTime - tokenTime > 3600000) {
+                alert("Session expired. Please log in again.");
+                localStorage.removeItem("token");
+                localStorage.removeItem("tokenTime");
+                navigate("/login");
+            }
         }
     }, [navigate]);
 
     const handleApiError = (error) => {
         if (error.response && error.response.status === 401) {
-            alert("Session expired. Please log in again.");
-            localStorage.removeItem("token");
-            navigate("/login");
+            const tokenTime = localStorage.getItem("tokenTime");
+            const currentTime = Date.now();
+            if (tokenTime && currentTime - tokenTime > 3600000) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("tokenTime");
+                navigate("/login");
+            } else {
+                refreshCart();
+            }
         }
     };
 
@@ -28,8 +43,16 @@ const Cart = () => {
         window.location.reload();
     };
 
-    if (loading) return <div style={{ marginTop: "200px" }}>Loading...</div>;
-    if (error) return <div style={{ marginTop: "200px" }}>Error: {error}</div>;
+    if (loading) {
+        return (
+            <div className="loader-containerc">
+                <div className="loaderc"></div>
+                <p>Loading...</p>
+            </div>
+        );
+    }
+
+    if (error) return <div style={{ marginTop: "200px", textAlign: "center" }}>Error: {error}</div>;
 
     return (
       <div className="cart-container">
@@ -86,12 +109,12 @@ const Cart = () => {
                     </td>
                     <td>₹{((item.productId.price * item.quantity) * (1 - (item.productId.discountPercentage / 100))).toFixed(2)}</td>
                     <td>
-                                      <button
-                    className="remove-button"
-                    onClick={() => removeFromCart(item.productId._id).catch(handleApiError).finally(refreshCart)}
-                  >
-                    <i className="fa fa-trash"></i> Remove
-                  </button>
+                      <button
+                        className="remove-button"
+                        onClick={() => removeFromCart(item.productId._id).catch(handleApiError).finally(refreshCart)}
+                      >
+                        <i className="fa fa-trash"></i> Remove
+                      </button>
                     </td>
                   </tr>
                 ))

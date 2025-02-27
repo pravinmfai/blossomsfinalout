@@ -8,6 +8,7 @@ import cart from '../assest/cart.svg';
 const ProductList = ({ searchQuery, dropdownOption }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]); // Track added cart items
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,8 @@ const ProductList = ({ searchQuery, dropdownOption }) => {
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProducts();
@@ -59,11 +62,9 @@ const ProductList = ({ searchQuery, dropdownOption }) => {
       }
     } catch (error) {
       console.error("Error adding to cart:", error);
-      alert("Failed to add item to cart");
     }
   };
   
-
   const filteredProducts = (() => {
     let result = products;
 
@@ -89,35 +90,42 @@ const ProductList = ({ searchQuery, dropdownOption }) => {
       <div className='brfyheading'>
         <h1>Best recommendations for you</h1>
       </div>
-      <div className="productlistingsec">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
-            <div 
-              className="productcard"
-              key={product._id}
-              onClick={() => handleProductClick(product)}
-            >
-              <img src={product.imageUrl} alt="" />
-              <h3>{product.name}</h3>
-              <p className='productlistpinprodcutshowingoutside'>
-                {product.description.length > 50 ? `${product.description.slice(0, 60)}...` : product.description}
-              </p>
-              <p className='price'>
-                <span className='offprice'>
-                  ₹{calculateOfferPrice(product.price, product.discountPercentage)}
-                </span>
-                <span className='ogprice'>₹{product.price}</span>
-              </p>
-              <button className='addtocart' onClick={(e) => { e.stopPropagation(); console.log("Button Clicked!"); handleAddToCart(product); }}>
-                <img src={cart} alt="cart" />
-                Add to cart
-              </button>
-            </div>
-          ))
-        ) : (
-          <p>No products found for "{searchQuery}".</p>
-        )}
-      </div>
+      {loading ? (
+        <div className="loader-containerc">
+          <div className="loaderc"></div>
+          <p>Loading...</p>
+        </div>
+      ) : (
+        <div className="productlistingsec">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <div 
+                className="productcard"
+                key={product._id}
+                onClick={() => handleProductClick(product)}
+              >
+                <img src={product.imageUrl} alt="" />
+                <h3>{product.name}</h3>
+                <p className='productlistpinprodcutshowingoutside'>
+                  {product.description.length > 50 ? `${product.description.slice(0, 60)}...` : product.description}
+                </p>
+                <p className='price'>
+                  <span className='offprice'>
+                    ₹{calculateOfferPrice(product.price, product.discountPercentage)}
+                  </span>
+                  <span className='ogprice'>₹{product.price}</span>
+                </p>
+                <button className='addtocart' onClick={(e) => { e.stopPropagation(); handleAddToCart(product); }}>
+                  <img src={cart} alt="cart" />
+                  Add to cart
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>No products found for "{searchQuery}".</p>
+          )}
+        </div>
+      )}
     </>
   );
 };

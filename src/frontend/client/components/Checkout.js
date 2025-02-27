@@ -12,7 +12,7 @@ const Checkout = ({ cartItems, userToken }) => {
 
   const handlePayment = async () => {
     if (!token) {
-      alert("❌ User not authenticated. Please log in.");
+      // alert("❌ User not authenticated. Please log in.");
       return;
     }
 
@@ -55,7 +55,7 @@ const Checkout = ({ cartItems, userToken }) => {
             }
           } catch (error) {
             console.error("Verification Error:", error);
-            alert("❌ Payment verification error!");
+            // alert("❌ Payment verification error!");
           }
         },
         prefill: {

@@ -93,7 +93,7 @@ const Productdesc = ({ product }) => {
             <img src={cart} alt="cart" />
             Add to cart
           </button>
-          <button className='buynow'>Buy now</button>
+          {/* <button className='buynow'>Buy now</button> */}
         </div>
       </div>
     </div>

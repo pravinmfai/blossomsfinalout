@@ -31,7 +31,7 @@ const ResetPass = () => {
         }
 
         if (password !== confirmPassword) {
-            window.alert("password doesn't match")
+            window.alert("Passwords doesn't match")
             return;
         }
        
@@ -41,14 +41,14 @@ const ResetPass = () => {
             .then(response => {
                 const { data } = response;
                 if (data.error) {
-                    window.alert(data.error)
+                    // window.alert(data.error)
                 } else {
                     // Redirect to dashboard after successful signup
                     navigate('/');
                 }
             })
             .catch(err => {
-                window.alert("An error occurred",err.message)
+                // window.alert("An error occurred",err.message)
             });
     };
 

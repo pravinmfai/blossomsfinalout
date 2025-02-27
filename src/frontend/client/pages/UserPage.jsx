@@ -11,6 +11,7 @@ const UserPage = () => {
         profilePic: "/assets/profile-icon.png", // Default profile picture
     });
     const [isEditing, setIsEditing] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,6 +35,8 @@ const UserPage = () => {
                 console.error("Error fetching user data", error);
                 localStorage.removeItem("token"); // Remove token before redirecting
                 navigate("/login");  // Redirect if error occurs (e.g., expired session or 404)
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -87,7 +90,7 @@ const UserPage = () => {
             );
 
             if (response.status === 200) {
-                alert("Profile updated successfully!");
+                // alert("Profile updated successfully!");
                 setIsEditing(false);
             } else {
                 alert("Failed to update profile");
@@ -97,6 +100,15 @@ const UserPage = () => {
             alert("There was an error updating your profile.");
         }
     };
+
+    if (loading) {
+        return (
+            <div className="loader-containerc">
+                <div className="loaderc"></div>
+                <p>Loading...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="user-container">

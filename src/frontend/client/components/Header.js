@@ -83,13 +83,13 @@ const Header = () => {
             <li onClick={toggleMobileMenu}><Link to="/shop" id='bt-two'>Shop</Link></li>
             <li onClick={toggleMobileMenu}><Link to="/orders" id='bt-three'>Orders</Link></li>
             <li onClick={toggleMobileMenu}>
-              <Link>
-                Add to Cart <ShoppingBasket01Icon />
+              <Link to="/cart">
+                Cart
               </Link>
             </li>
             <li onClick={toggleMobileMenu}>
-              <Link>
-                Login <UserIcon />
+              <Link to="/login">
+                Login
               </Link>
             </li>
           </ul>
