@@ -18,7 +18,7 @@ const SareeCategories = () => {
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     let scrollAmount = 0;
-    const speed = 2; // Adjust speed (higher = slower scroll)
+    const speed = 2; 
 
     const scroll = () => {
       if (scrollContainer) {

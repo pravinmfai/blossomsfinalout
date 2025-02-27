@@ -6,9 +6,10 @@
 
 .title {
   font-size: 32px;
-  font-family: serif;
+  font-family: 'Times New Roman', serif;
   font-weight: bold;
   margin-bottom: 10px;
+  font-style: italic;
 }
 
 .description {

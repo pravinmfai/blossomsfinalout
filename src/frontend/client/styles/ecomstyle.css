@@ -264,22 +264,43 @@
 }
 
 
-.offprice{
-  /* font-size: 16px; */
-  font-size: 1.5vw;
+.offprice {
+  font-size: 1.5vw; /* Default for larger screens */
   font-family: Manrope;
   font-weight: 600;
-  margin:0 4px 0 0;
+  margin: 0 4px 0 0;
   color: black;
 }
 
-.ogprice{
+.ogprice {
   font-size: 1.2vw;
   color: #888;
   font-family: Manrope;
   font-weight: 400;
   text-decoration: line-through;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .offprice {
+    font-size: 14px; /* Reduce size for tablets */
+  }
+  
+  .ogprice {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .offprice {
+    font-size: 20px; /* Further reduce size for mobile */
+  }
+  
+  .ogprice {
+    font-size: 14px;
+  }
+}
+
 
 .addtocart{
   font-family: Manrope;
