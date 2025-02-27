@@ -6,7 +6,6 @@ const Product = require('../models/productModel'); // Make sure this is at the t
 // Fetch cart items for a user
 const getCartItems = async (req, res) => {
   const userId = req.user._id;
-  console.log(`Fetching cart for userId: ${userId}`); 
   try {
     const cart = await Cart.findOne({ userId: req.user._id }).populate('items.productId');
     if (!cart) {

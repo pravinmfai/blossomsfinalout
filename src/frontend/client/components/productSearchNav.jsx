@@ -6,7 +6,6 @@
 //   const options = ['Featured', 'Latest', 'Oldest'];
 
 //   const handleSelect = (selectedOption) => {
-//     console.log('Selected option:', selectedOption);
 //   };
 //   return (
 //     <>
@@ -36,7 +35,6 @@ const ProductSearchNav = ({ onSearch, onDropdownSelect  }) => {
   const options = ['Featured', 'Latest', 'Oldest'];
 
   const handleSelect = (selectedOption) => {
-    console.log('Selected option:', selectedOption);
     onDropdownSelect(selectedOption);
   };
 

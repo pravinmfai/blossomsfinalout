@@ -22,6 +22,19 @@
   font-weight: 500;
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+  .offer-pp {
+    font-size: 14px; /* Reduce text size for tablets and smaller devices */
+  }
+}
+
+@media (max-width: 480px) {
+  .offer-pp {
+    font-size: 12px; /* Further reduce text size for mobile phones */
+  }
+}
+
 /* OFFER PARAGRAPH COMPLETED */
 
 /* NAV CSS STARTED */

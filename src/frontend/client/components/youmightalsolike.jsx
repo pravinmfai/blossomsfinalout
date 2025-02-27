@@ -26,7 +26,6 @@ const Youmightalsolike = ({tags}) => {
   const handleProductClick = (product) => {
     navigate(`/shop/productdescription`,{ state: {product:product} });
     window.location.reload(); 
-    console.log(product);
   };
 
 

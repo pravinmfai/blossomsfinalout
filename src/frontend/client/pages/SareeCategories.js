@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../styles/SareeCategories.css";
 
 const sareeCategories = [
@@ -13,6 +13,30 @@ const sareeCategories = [
 ];
 
 const SareeCategories = () => {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    let scrollAmount = 0;
+    const speed = 2; // Adjust speed (higher = slower scroll)
+
+    const scroll = () => {
+      if (scrollContainer) {
+        scrollContainer.scrollLeft += speed;
+        scrollAmount += speed;
+
+        // Reset scroll when reaching half of the duplicated items
+        if (scrollAmount >= scrollContainer.scrollWidth / 2) {
+          scrollContainer.scrollLeft = 0;
+          scrollAmount = 0;
+        }
+      }
+    };
+
+    const interval = setInterval(scroll, 50);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="sareecontainer">
       <h2 className="title">Explore our categories for you</h2>
@@ -20,15 +44,17 @@ const SareeCategories = () => {
         Browse our wide selection of cotton sarees. Whether you love handloom styles
         or modern designs, there's something here just for you!
       </p>
-      <div className="grid-container">
-        {sareeCategories.map((saree, index) => (
-          <div key={index} className="saree-card">
-            <img src={saree.image} alt={saree.name} className="saree-image" />
-            <div className="overlay">
-              <span className="overlay-text">{saree.name}</span>
+      <div className="scrolling-wrapper">
+        <div className="grid-container" ref={scrollRef}>
+          {sareeCategories.concat(sareeCategories).map((saree, index) => (
+            <div key={index} className="saree-card">
+              <img src={saree.image} alt={saree.name} className="saree-image" />
+              <div className="overlay">
+                <span className="overlay-text">{saree.name}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

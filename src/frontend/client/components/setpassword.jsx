@@ -36,7 +36,6 @@ const SetPassword = () => {
             return;
         }
        
-        console.log("Response-");
         // Make a single POST request to the new combined route
         axios.post('https://blossomsfinalout.onrender.com/api/auth/register', { user_json_url, email, phoneNumber, password })
             .then(response => {

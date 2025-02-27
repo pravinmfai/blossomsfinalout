@@ -27,7 +27,6 @@ const ProductList = ({ searchQuery, dropdownOption }) => {
     fetchProducts();
   }, []);
 
-  console.log(products);
 
   const handleProductClick = (product) => {
     navigate(`productdescription`, { state: { product: product } });
@@ -39,7 +38,6 @@ const ProductList = ({ searchQuery, dropdownOption }) => {
   }
 
   const handleAddToCart = async (product) => {
-    console.log("Button clicked", product);
     const token = localStorage.getItem("token");
     if (!token) {
       alert("Please log in to add items to the cart");

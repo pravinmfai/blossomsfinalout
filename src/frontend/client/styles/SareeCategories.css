@@ -1,71 +1,91 @@
 .container {
-    text-align: center;
-    padding: 50px;
-    background-color: #f5f5f5;
+  text-align: center;
+  padding: 50px;
+  background-color: #f5f5f5;
+}
+
+.title {
+  font-size: 32px;
+  font-family: serif;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: #666;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Outer wrapper to hide scrollbar */
+.scrolling-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Grid container with flexbox for smooth scrolling */
+.grid-container {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  white-space: nowrap;
+  animation: scrollLoop 15s linear infinite; /* Continuous animation */
+}
+
+/* Each category card */
+.saree-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  min-width: 200px; /* Ensures each item is scrollable */
+  flex: 0 0 auto;
+}
+
+.saree-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.saree-card:hover .saree-image {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.saree-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Keyframes for smooth scrolling */
+@keyframes scrollLoop {
+  0% {
+      transform: translateX(0);
   }
-  
-  .title {
-    font-size: 32px;
-    font-family: serif;
-    font-weight: bold;
-    margin-bottom: 10px;
+  100% {
+      transform: translateX(-100%);
   }
-  
-  .description {
-    color: #666;
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Locks to 4 columns */
-    gap: 20px;
-    padding: 0 20px;
-  }
-  
-  
-  .saree-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-  }
-  
-  .saree-image {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .saree-card:hover .saree-image {
-    transform: scale(1.1);
-  }
-  
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 10px;
-  }
-  
-  .saree-card:hover .overlay {
-    opacity: 1;
-  }
-  
-  .overlay-text {
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
+}

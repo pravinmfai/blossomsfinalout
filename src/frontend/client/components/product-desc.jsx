@@ -25,7 +25,6 @@ const Productdesc = ({ product }) => {
   };
 
   const handleAddToCart = async () => {
-    console.log("Button clicked", product);
     const token = localStorage.getItem("token");
     if (!token) {
       showPopup("Please log in to add items to the cart");

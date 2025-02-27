@@ -9,7 +9,6 @@ const ColorSelector = ({ colors , onColorSelect }) => {
     onColorSelect(color);
   };
 
-  console.log(colors);
   
   return (
     <div className="color-selector">

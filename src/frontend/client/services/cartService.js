@@ -25,8 +25,7 @@ export const getCartItems = async () => {
 // Update cart item quantity
 export const updateCartItem = async (productId, quantity) => {
   try {
-    const token = localStorage.getItem('token'); // Get token from localStorage
-    console.log(productId, quantity);
+    const token = localStorage.getItem('token'); // Get token from localStora
     const response = await axios.post(`${API_URL}/add`, { productId, quantity }, {
       headers: {
         Authorization: `Bearer ${token}`, // Add token to request headers

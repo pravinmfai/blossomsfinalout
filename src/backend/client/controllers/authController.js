@@ -15,7 +15,6 @@ const registerUser = async (req, res) => {
 
     // Create a new user
     const newUser = new User({ phoneNumber, email, password });
-    console.log(newUser);
     await newUser.save();
 
     res.status(201).json({ message: 'User registered successfully' });

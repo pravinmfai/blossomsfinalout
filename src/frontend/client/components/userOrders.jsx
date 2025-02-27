@@ -109,7 +109,6 @@ const OrdersListing = () => {
   };
 
  const applyFilters = () => {
-  console.log(statusFilter)
   const filtered = ordersData.filter(order => {
     // If the search term is empty and the status filter is "All", return true for all orders
     if (statusFilter === 'All' || statusFilter === "") {
@@ -123,8 +122,6 @@ const OrdersListing = () => {
     const nameMatch = order.primaryInfo.productName.toLowerCase().includes(searchTerm.toLowerCase());
 
     // Both conditions should be true to include the order in the filtered list
-
-    console.log(searchTerm,statusFilter,statusMatch,nameMatch)
     return statusMatch && nameMatch;
   });
 

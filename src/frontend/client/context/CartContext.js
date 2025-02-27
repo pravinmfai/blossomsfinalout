@@ -27,7 +27,6 @@ export const CartProvider = ({ children }) => {
     setLoading(true);
     try {
         const cartData = await getCartItems(); // Fetch cart data
-        console.log('Cart Data:', cartData);  // Log the response for inspection
 
         if (cartData && Array.isArray(cartData) && cartData.length > 0) {
             // Fetch product details for each item in the cart
