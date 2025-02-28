@@ -54,15 +54,29 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-// ✅ Register User
 app.post("/api/auth/register", async (req, res) => {
-  const { name, email, phone, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const user = new User({ name, email, phone, password: hashedPassword });
-  await user.save();
-  res.json({ message: "User registered successfully" });
-});
+  try {
+    const { name, email, phone, password } = req.body;
 
+    // Check if the email already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already in use" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create and save the user
+    const user = new User({ name, email, phone, password: hashedPassword });
+    await user.save();
+
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error("Error registering user:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 // ✅ Login User
 app.post("/api/auth/login", async (req, res) => {
   try {
