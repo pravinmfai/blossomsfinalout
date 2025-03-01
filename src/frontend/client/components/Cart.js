@@ -25,6 +25,8 @@ const Cart = () => {
         }
     }, [navigate]);
 
+    const isCheckoutDisabled = cartItems.length === 0 || cartItems.every(item => item.quantity === 0);    
+
     const handleApiError = (error) => {
         if (error.response && error.response.status === 401) {
             const tokenTime = localStorage.getItem("tokenTime");
@@ -52,7 +54,45 @@ const Cart = () => {
         );
     }
 
-    if (error) return <div style={{ marginTop: "200px", textAlign: "center" }}>Error: {error}</div>;
+    if (error)
+      return (
+        <div
+          style={{
+            marginTop: "200px",
+            textAlign: "center",
+            padding: "20px",
+            border: "1px solid #ff4d4f",
+            borderRadius: "8px",
+            backgroundColor: "#fff1f0",
+            color: "#a8071a",
+            maxWidth: "400px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <p style={{ fontSize: "18px", fontWeight: "bold" }}>Error: {error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            style={{
+              marginTop: "10px",
+              padding: "8px 16px",
+              fontSize: "16px",
+              backgroundColor: "#ff4d4f",
+              color: "#fff",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+              transition: "background 0.3s",
+            }}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#d9363e")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#ff4d4f")}
+          >
+            Refresh
+          </button>
+        </div>
+      );
+    
 
     return (
       <div className="cart-container">
@@ -138,11 +178,16 @@ const Cart = () => {
             <p>₹{totalPrice}</p>
           </div>
           <button
-          className="checkout-btn"
-          onClick={() => navigate("/address", { state: { cartItems, totalPrice } })}
-        >
-          Checkout now
-        </button>
+      className="checkout-btn"
+      onClick={() => navigate("/address", { state: { cartItems, totalPrice } })}
+      disabled={isCheckoutDisabled}
+      style={{
+        backgroundColor: isCheckoutDisabled ? "#ccc" : "#000000",
+        cursor: isCheckoutDisabled ? "not-allowed" : "pointer",
+      }}
+    >
+      Checkout now
+    </button>
         </div>
       </div>
     );

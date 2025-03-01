@@ -114,8 +114,9 @@
   margin-top: 20px;
 }
 
+
 .remove-button {
-  background-color: #ff4d4d;
+  background-color: black;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -129,7 +130,7 @@
 }
 
 .remove-button:hover {
-  background-color: #cc0000;
+  background-color: red;
 }
 
 .remove-button i {
