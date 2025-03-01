@@ -37,20 +37,28 @@ const SetPassword = () => {
         }
        
         // Make a single POST request to the new combined route
-        axios.post('https://blossomsfinalout.onrender.com/api/auth/register', { user_json_url, email, phoneNumber, password })
-            .then(response => {
-                const { data } = response;
-                if (data.error) {
-                    window.alert(data.error)
-                } else {
-                    // Redirect to dashboard after successful signup
-                    navigate('/login');
-                }
-            })
-            .catch(err => {
-                window.alert(err.response.data.error);
-            });
-    };
+        axios.post('https://blossomsfinalout.onrender.com/api/auth/register', { 
+          user_json_url, 
+          email, 
+          phoneNumber, 
+          password 
+      })
+      .then(response => {
+          if (response.data && response.data.message) {
+              window.alert(response.data.message); // Success message
+              navigate('/login'); // Redirect after successful signup
+          } else {
+              window.alert("Unexpected response from server");
+          }
+      })
+      .catch(err => {
+          if (err.response && err.response.data && err.response.data.message) {
+              window.alert(err.response.data.message); // Show proper error message
+          } else {
+              window.alert("Something went wrong. Please try again."); // Fallback error
+          }
+      });
+    };      
 
     return (
         <div className='set-password-container'>

@@ -25,7 +25,7 @@ db.on("error", (err) => console.error("❌ MongoDB Connection Error:", err));
 
 // ✅ User Schema
 const UserSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, default: "User" },
   email: String,
   phone: String,
   password: String,
@@ -115,6 +115,22 @@ app.get("/api/user/profile", authMiddleware, async (req, res) => {
     res.status(500).json({ error: "Error fetching user data" });
   }
 });
+
+// Update User Profile
+app.put("/api/user/profile", authMiddleware, async (req, res) => {
+  const { name, email, phone, profilePic } = req.body;
+  try {
+    req.user.name = name || req.user.name;
+    req.user.email = email || req.user.email;
+    req.user.phone = phone || req.user.phone;
+    req.user.profilePic = profilePic || req.user.profilePic;
+    await req.user.save();
+    res.json({ message: "Profile updated successfully", user: req.user });
+  } catch (err) {
+    res.status(500).json({ error: "Error updating profile" });
+  }
+});
+
 
 
 // ✅ Razorpay Order Creation
